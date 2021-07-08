@@ -1,0 +1,39 @@
+svc:
+  - name: apigateway
+    namespace: apigateway
+    
+    # docker_image: ghcr.io/ac-4/xcexampleapigateway:latest
+    docker_image: docker.io/kennethreitz/httpbin
+    replicas: 1
+    port: 80
+    host : "*"
+    apiPrefix: "/status"
+    ingresNamespace: istio-system
+    ingressAppLabels: 
+      app: istio-ingressgateway
+  - name: apiweather
+    namespace: applications
+    
+    # docker_image: ghcr.io/ac-4/xcexampleapigateway:latest
+    docker_image: ghcr.io/ac-4/xcexample.api.weather:latest
+    replicas: 1
+    port: 80
+    host : "*"
+    apiPrefix: "/"
+    ingresNamespace: apigateway
+    ingressAppLabels: 
+      app: apigateway
+
+
+  - name: apisometext
+    namespace: applications
+    
+    # docker_image: ghcr.io/ac-4/xcexampleapigateway:latest
+    docker_image: ghcr.io/ac-4/xcexample.api.sometext:latest 
+    replicas: 1
+    port: 80
+    host : "*"
+    apiPrefix: "/"
+    ingresNamespace: apigateway
+    ingressAppLabels: 
+      app: apigateway
