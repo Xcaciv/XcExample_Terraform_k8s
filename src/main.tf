@@ -5,7 +5,7 @@ locals {
 
     helmChartValuesIstio = {
     global = {
-      jwtPolicy = "first-party-jwt",
+      jwtPolicy = "third-party-jwt",
       proxy = {
       privileged =true
       }
@@ -46,7 +46,7 @@ locals {
 
 # https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/guides/getting-started
 provider "kubernetes" {
-  config_context_cluster   = "minikube"
+  // config_context_cluster   = "minikube"
   config_path = local.kube_config
 }
 

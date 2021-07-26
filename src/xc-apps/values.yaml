@@ -3,7 +3,7 @@ svc:
     namespace: apigateway
     
     # docker_image: ghcr.io/ac-4/xcexampleapigateway:latest
-    docker_image: docker.io/kennethreitz/httpbin
+    docker_image: ghcr.io/ac-4/xcexample.apigateway:latest
     replicas: 1
     port: 80
     host : "*"
