@@ -4,6 +4,7 @@
 // helm.sh/chart=postgresql-10.7.1
 resource "helm_release" "postgres" {
   chart = "bitnami/postgresql"
+  repository = "https://charts.bitnami.com/bitnami"
   name = "my-app-postgres"
   version    = "10.7.1"
   namespace = kubernetes_namespace.databases.id
