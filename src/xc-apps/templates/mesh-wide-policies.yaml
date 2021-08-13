@@ -1,0 +1,24 @@
+{{- range  .Values.namespacesMandatoryMtls }}
+---
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: "{{ .name }}-require-mtls"
+  namespace: "{{ .name }}"
+spec:
+  action: DENY
+  rules:
+  - from:
+    - source:
+        notPrincipals: ["*"]
+{{- end }}
+
+---
+apiVersion: security.istio.io/v1beta1
+kind: PeerAuthentication
+metadata:
+  name: "default"
+  namespace: "istio-system"
+spec:
+  mtls:
+    mode: STRICT

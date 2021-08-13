@@ -34,16 +34,3 @@ resource "kubernetes_namespace" "applications" {
 
     }  
 }
-
-
-resource "kubernetes_namespace" "apigateway" {
-  metadata {
-    name = "apigateway"
-  
-
-   labels = {
-      istio-injection = "enabled",
-      namespace = "apigateway"
-    }
-    }  
-}

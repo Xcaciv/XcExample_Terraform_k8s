@@ -1,0 +1,42 @@
+
+
+--- 
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  namespace: databases
+  name: deny-all
+spec:
+  action: DENY
+  rules:
+  - {}
+# ---
+# apiVersion: security.istio.io/v1beta1
+# kind: AuthorizationPolicy
+# metadata:
+#  name: "deny-authorizationpolicy-postgres-not-apps"
+#  namespace: databases
+# spec:
+#  selector:
+#    matchLabels:
+#      app.kubernetes.io/name: postgresql
+#  action: DENY
+#  rules:
+#  - from:
+#    - source:
+#        notNamespaces: ["applications"]
+# --- 
+# apiVersion: security.istio.io/v1beta1
+# kind: AuthorizationPolicy
+# metadata:
+#  name: "deny-authorizationpolicy-redis-not-apps"
+#  namespace: databases
+# spec:
+#  selector:
+#    matchLabels:
+#      app.kubernetes.io/name: redis
+#  action: DENY
+#  rules:
+#  - from:
+#    - source:
+#        notNamespaces: ["applications"]

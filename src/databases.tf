@@ -5,7 +5,7 @@
 resource "helm_release" "postgres" {
   chart = "postgresql"
   repository = "https://charts.bitnami.com/bitnami"
-  name = "my-app-postgres"
+  name = "postgres"
   version    = "10.7.1"
   namespace = kubernetes_namespace.databases.id
 
@@ -54,7 +54,7 @@ resource "helm_release" "postgres" {
 # https://bitnami.com/stack/redis
 //helm.sh/chart=redis-14.8.3
 resource "helm_release" "redis" {
-  name       = "redis-release"
+  name       = "redis"
   repository = "https://charts.bitnami.com/bitnami"
   chart      = "redis"
   version    = "14.8.3"

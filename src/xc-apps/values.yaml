@@ -1,39 +1,38 @@
+
+namespacesMandatoryMtls: 
+  - name: databases
+  - name: applications
+
 svc:
   - name: apigateway
-    namespace: apigateway
-    
-    # docker_image: ghcr.io/ac-4/xcexampleapigateway:latest
+    namespace: applications
     docker_image: ghcr.io/ac-4/xcexample.apigateway:latest
     replicas: 1
     port: 80
     host : "*"
     apiPrefix: "/status"
-    ingresNamespace: istio-system
-    ingressAppLabels: 
-      app: istio-ingressgateway
-  - name: apiweather
+    customServiceAccount: true
+    customServiceAccountName: "cluster.local/ns/istio-system/sa/istio-ingressgateway-service-account"
+    virtualServiceEnabled: true
+
+  - name: weather
     namespace: applications
-    
-    # docker_image: ghcr.io/ac-4/xcexampleapigateway:latest
     docker_image: ghcr.io/ac-4/xcexample.api.weather:latest
     replicas: 1
     port: 80
     host : "*"
     apiPrefix: "/"
-    ingresNamespace: apigateway
-    ingressAppLabels: 
-      app: apigateway
+    customServiceAccount: false
+    whitelistedServiceName: "apigateway"
+    whitelistedServiceNameSpace: "applications"
 
-
-  - name: apisometext
+  - name: sometext
     namespace: applications
-    
-    # docker_image: ghcr.io/ac-4/xcexampleapigateway:latest
     docker_image: ghcr.io/ac-4/xcexample.api.sometext:latest 
     replicas: 1
     port: 80
     host : "*"
     apiPrefix: "/"
-    ingresNamespace: apigateway
-    ingressAppLabels: 
-      app: apigateway
+    customServiceAccount: false
+    whitelistedServiceName: "apigateway"
+    whitelistedServiceNameSpace: "applications"

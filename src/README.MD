@@ -108,3 +108,18 @@ This command will prompt for confirmation
     terraform destroy 
     
 Answer "Yes" to the prompt, if you want to proceed with removal
+
+
+
+### 6. 
+
+
+export INGRESS_PORT=$(kubectl -n istio-system get service istio-ingressgateway -o jsonpath='{.spec.ports[?(@.name=="http2")].nodePort}');
+
+export INGRESS_HOST=127.0.0.1;
+export GATEWAY_URL=$INGRESS_HOST:$INGRESS_PORT;
+curl -s -I -HHost:minikube.local "http://$INGRESS_HOST:$INGRESS_PORT/status/200";
+
+curl -v "http://$INGRESS_HOST:$INGRESS_PORT/api/apiweather/WeatherForecast";
+
+curl -v http://127.0.0.1:30000
