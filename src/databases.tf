@@ -3,7 +3,7 @@
 # https://bitnami.com/stack/postgresql/helm
 // helm.sh/chart=postgresql-10.7.1
 resource "helm_release" "postgres" {
-  chart = "bitnami/postgresql"
+  chart = "postgresql"
   repository = "https://charts.bitnami.com/bitnami"
   name = "my-app-postgres"
   version    = "10.7.1"
