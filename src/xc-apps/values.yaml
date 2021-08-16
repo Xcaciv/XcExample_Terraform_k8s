@@ -10,7 +10,7 @@ svc:
     replicas: 1
     port: 80
     host : "*"
-    apiPrefix: "/status"
+    apiPrefix: "/"
     customServiceAccount: true
     customServiceAccountName: "cluster.local/ns/istio-system/sa/istio-ingressgateway-service-account"
     virtualServiceEnabled: true
